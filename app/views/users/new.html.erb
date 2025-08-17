@@ -1,0 +1,20 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl mb-4">Create Account</h1>
+  <%= form_with model: @user, url: users_path, class: "contents" do |form| %>
+    <div class="my-5">
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Email", class: "block shadow-sm rounded-md border border-gray-400 px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Password", maxlength: 72, class: "block shadow-sm rounded-md border border-gray-400 px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat Password", maxlength: 72, class: "block shadow-sm rounded-md border border-gray-400 px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div>
+      <%= form.submit "Create Account", class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium cursor-pointer" %>
+    </div>
+  <% end %>
+  <div class="mt-4 text-center">
+    <p class="text-sm text-gray-600">Already have an account? <%= link_to "Login", new_session_path, class: "text-blue-600 hover:text-blue-500" %></p>
+  </div>
+</div>
