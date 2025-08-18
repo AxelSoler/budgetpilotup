@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   resources :users, only: [:new, :create]
-  resources :transactions, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  resources :categories, only: [:index, :create, :show, :edit, :update, :destroy]
+  resources :transactions, only: [:index, :new, :create, :show]
+  resources :categories, only: [:index, :create, :update, :destroy]
   resources :dashboard, only: [:index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
