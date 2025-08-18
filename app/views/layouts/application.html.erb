@@ -23,8 +23,15 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <main class="mx-auto px-5 flex bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen">
+  <body class="bg-gradient-to-br from-blue-100 to-blue-300">
+    <% if (
+      (controller_name == 'dashboard' && action_name == 'index') ||
+      controller_name == 'categories' ||
+      controller_name == 'transactions'
+    ) %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+    <main class="mx-auto px-5 flex min-h-screen">
       <%= yield %>
     </main>
   </body>
