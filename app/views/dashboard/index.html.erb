@@ -1,0 +1,14 @@
+<h1>BudgetPilotUp</h1>
+
+<p><strong>Actual balance:</strong> <%= number_to_currency(@balance) %></p>
+
+<h2>Last transactions</h2>
+<ul>
+  <% @transactions.each do |t| %>
+    <li>
+      <%= t.date %> - <%= t.title %> - 
+      <%= number_to_currency(t.amount) %> 
+      (<%= t.category.name %>)
+    </li>
+  <% end %>
+</ul>
