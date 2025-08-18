@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if authenticated?
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
     else
       render :index
     end
