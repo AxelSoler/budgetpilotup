@@ -17,6 +17,12 @@
       <% end %>
 
       <div>
+        <%= form.label :kind, "Type", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.select :kind, Transaction.kinds.keys.map { |k| [k.titleize, k] },
+          {}, class: "mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" %>
+      </div>
+
+      <div>
         <%= form.label :amount, "Amount", class: "block text-sm font-medium text-gray-700" %>
         <%= form.number_field :amount, step: 0.01,
           class: "mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" %>
