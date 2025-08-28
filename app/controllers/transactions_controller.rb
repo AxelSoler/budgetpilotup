@@ -7,24 +7,24 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
   end
 
-	def new
-		@transaction = Transaction.new
-	end
+  def new
+    @transaction = Transaction.new
+  end
 
-	def create
-		@transaction = Transaction.new(transaction_params)
+  def create
+    @transaction = Transaction.new(transaction_params)
     @transaction.user = Current.user
 
-		if @transaction.save
-			redirect_to transactions_path, notice: 'Transaction created successfully.'
-		else
-			render :new, status: :unprocessable_entity
-		end
-	end
+    if @transaction.save
+      redirect_to transactions_path, notice: "Transaction created successfully."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
-	private
+  private
 
-	def transaction_params
-		params.require(:transaction).permit(:amount, :description, :category_id, :date, :kind)
-	end
+  def transaction_params
+    params.require(:transaction).permit(:amount, :description, :category_id, :date, :kind)
+  end
 end

@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-
   def index
     scope = Current.user.transactions
 
@@ -16,7 +15,7 @@ class DashboardController < ApplicationController
 
     @expenses_by_category = scope.expense
                                  .joins(:category)
-                                 .group('categories.name')
-                                 .sum(Arel.sql('ABS(transactions.amount)'))
+                                 .group("categories.name")
+                                 .sum(Arel.sql("ABS(transactions.amount)"))
   end
 end
