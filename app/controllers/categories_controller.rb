@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     @category.user = Current.user
 
     if @category.save
-      redirect_to @category, notice: "Category created successfully."
+      redirect_to categories_url, notice: "Category created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to @category, notice: "Category updated successfully."
+      redirect_to categories_url, notice: "Category updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -29,8 +29,11 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    @category.destroy
-    redirect_to categories_path, notice: "Category deleted successfully."
+    if @category.destroy
+      redirect_to categories_path, notice: "Category deleted successfully."
+    else
+      redirect_to categories_path, alert: @category.errors.full_messages.to_sentence
+    end
   end
 
   private
