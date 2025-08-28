@@ -8,14 +8,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/icon3.png" type="image/png">
+    <link rel="icon" href="/icon3.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icon3.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -23,7 +27,7 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="bg-gradient-to-br from-blue-100 to-blue-300">
+  <body style="background-color: var(--color-primary-50);">
     <% if (
       (controller_name == 'dashboard' && action_name == 'index') ||
       controller_name == 'categories' ||
@@ -31,7 +35,7 @@
     ) %>
       <%= render 'shared/navbar' %>
     <% end %>
-    <main class="mx-auto px-5 flex min-h-screen">
+    <main class="mx-auto flex min-h-screen">
       <%= yield %>
     </main>
   </body>

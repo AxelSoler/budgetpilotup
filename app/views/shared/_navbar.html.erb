@@ -1,8 +1,8 @@
-<nav class="bg-white shadow-md mb-6">
+<nav class="shadow-md mb-6" style="background-color: white;">
   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
     
     <div class="flex items-center space-x-2">
-      <%= link_to '💸 BudgetPilotUp', dashboard_path, class: "text-2xl font-extrabold text-blue-700"%>
+      <%= link_to '💸 BudgetPilotUp', dashboard_path, class: "text-2xl font-extrabold", style: "color: var(--color-primary-700);"%>
     </div>
 
     <div class="hidden md:flex items-center space-x-6">
@@ -12,11 +12,11 @@
 
       <!-- Logout -->
       <%= button_to 'Logout', session_path, method: :delete, 
-            class: "ml-4 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition cursor-pointer" %>
+            class: "ml-4 px-3 py-1.5 hover:bg-red-600 text-white font-semibold rounded-lg transition cursor-pointer", style: "background-color: var(--color-secondary-500);" %>
     </div>
 
     <div class="md:hidden">
-      <button id="mobile-menu-button" class="text-blue-600 hover:text-blue-800 focus:outline-none">
+      <button id="mobile-menu-button" class="hover:text-blue-800 focus:outline-none" style="color: var(--color-primary-600);">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -26,12 +26,12 @@
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-blue-100">
+  <div id="mobile-menu" class="hidden md:hidden border-t" style="background-color: white; border-color: var(--color-blue-100);">
     <div class="px-4 py-2 flex flex-col space-y-2">
-      <%= link_to 'Dashboard', dashboard_path, class: "text-blue-600 hover:text-blue-800 font-semibold" %>
-      <%= link_to 'Categories', categories_path, class: "text-blue-600 hover:text-blue-800 font-semibold" %>
-      <%= link_to 'Transactions', transactions_path, class: "text-blue-600 hover:text-blue-800 font-semibold" %>
-      <%= button_to 'Logout', session_path, method: :delete, class: "px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition" %>
+      <%= link_to 'Dashboard', dashboard_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
+      <%= link_to 'Categories', categories_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
+      <%= link_to 'Transactions', transactions_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
+      <%= button_to 'Logout', session_path, method: :delete, class: "px-3 py-1.5 hover:bg-red-600 text-white font-semibold rounded-lg transition", style: "background-color: var(--color-secondary-500);" %>
     </div>
   </div>
 </nav>
