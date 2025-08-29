@@ -1,6 +1,6 @@
 <div class="min-h-screen p-6 w-full">
   <!-- Header -->
-  <header class="text-center mb-8">
+  <header class="text-center mb-4 md:mb-8">
     <h1 class="text-4xl font-extrabold drop-shadow-sm" style="color: var(--color-primary-700);">
       BudgetPilotUp
     </h1>
@@ -8,7 +8,7 @@
   </header>
 
   <!-- Balance Card -->
-  <div class="max-w-lg mx-auto bg-white shadow-lg rounded-2xl p-6 mb-10 border" style="border-color: var(--color-primary-100);">
+  <div class="max-w-lg mx-auto bg-white shadow-lg rounded-2xl p-6 mb-6 border" style="border-color: var(--color-primary-100);">
     <p class="text-gray-600 text-sm">Actual Balance</p>
     <p class="text-3xl font-bold" style="color: var(--color-primary-600);">
       <%= number_to_currency(@balance) %>
@@ -17,9 +17,9 @@
 
   <!-- Transactions Section -->
   <section class="max-w-3xl mx-auto mb-10">
-    <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
-      <h2 class="text-2xl font-semibold mb-4" style="color: var(--color-primary-700);">Last Transactions</h2>
-      <%= link_to 'New Transaction', new_transaction_path, class: "mt-2 sm:mt-0 inline-block text-white font-semibold px-4 py-2 rounded-xl shadow transition", style: "background-color: var(--color-primary-600);" %>
+    <div class="flex flex-col-reverse sm:flex-row gap-4 justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold" style="color: var(--color-primary-700);">Last Transactions</h2>
+      <%= link_to 'New Transaction', new_transaction_path, class: "inline-block text-white font-semibold px-4 py-2 rounded-xl shadow transition", style: "background-color: var(--color-primary-600);" %>
     </div>
     <div class="bg-white shadow-md rounded-xl overflow-hidden border" style="border-color: var(--color-primary-100);">
       <ul class="divide-y" style="border-color: var(--color-primary-50);">

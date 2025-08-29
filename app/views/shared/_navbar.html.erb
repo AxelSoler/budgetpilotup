@@ -1,8 +1,11 @@
-<nav class="shadow-md mb-6" style="background-color: white;">
+<nav class="shadow-md fixed top-0 w-full z-50" style="background-color: white;">
   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
     
     <div class="flex items-center space-x-2">
-      <%= link_to '💸 BudgetPilotUp', dashboard_path, class: "text-2xl font-extrabold", style: "color: var(--color-primary-700);"%>
+      <%= link_to dashboard_path, class: "flex items-center" do %>
+        <%= image_tag "/icon3.png", alt: "Budgetpilotup Logo", class: "w-10 h-10" %>
+        <span class="hidden md:block text-2xl font-extrabold" style="color: var(--color-primary-700);">BudgetPilotUp</span>
+      <% end %>
     </div>
 
     <div class="hidden md:flex items-center space-x-6">
@@ -26,12 +29,28 @@
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t" style="background-color: white; border-color: var(--color-blue-100);">
-    <div class="px-4 py-2 flex flex-col space-y-2">
-      <%= link_to 'Dashboard', dashboard_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
-      <%= link_to 'Categories', categories_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
-      <%= link_to 'Transactions', transactions_path, class: "font-semibold", style: "color: var(--color-primary-600); hover:color: var(--color-blue-800);" %>
-      <%= button_to 'Logout', session_path, method: :delete, class: "px-3 py-1.5 hover:bg-red-600 text-white font-semibold rounded-lg transition", style: "background-color: var(--color-secondary-500);" %>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200" style="color: var(--color-primary-700);">
+    <div class="pt-2 pb-3 space-y-1">
+      <%= link_to dashboard_path, class: "flex items-center px-4 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition-colors" do %>
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        <span>Dashboard</span>
+      <% end %>
+      <%= link_to categories_path, class: "flex items-center px-4 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition-colors" do %>
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"></path></svg>
+        <span>Categories</span>
+      <% end %>
+      <%= link_to transactions_path, class: "flex items-center px-4 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition-colors" do %>
+        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+        <span>Transactions</span>
+      <% end %>
+    </div>
+    <div class="pt-3 pb-3 border-t border-gray-200">
+      <%= button_to session_path, method: :delete, class: "w-full" do %>
+        <div class="flex items-center px-4 py-3 text-base font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors">
+          <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+          <span>Logout</span>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
