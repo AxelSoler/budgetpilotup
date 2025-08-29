@@ -1,4 +1,4 @@
-<div class="min-h-screen w-full lg:w-4/5 mx-auto p-6">
+<div class="min-h-screen w-full lg:w-4/5 mx-auto p-6 pt-16 md:pt-20">
   <header class="flex flex-col sm:flex-row justify-between sm:justify-evenly items-center mb-8 border-b border-gray-300 pb-4">
     <h1 class="text-4xl font-extrabold text-gradient bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent drop-shadow-md">
       Transactions
@@ -22,50 +22,56 @@
     </div>
   <% end %>
 
-  <div class="max-w-6xl mx-auto">
+  <div class="mx-auto">
     <% if @transactions.any? %>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <% @transactions.each do |transaction| %>
-          <div class="<%= transaction.kind == "income" ? 'bg-green-100 text-green-900' : 'bg-red-100 text-red-900' %> rounded-3xl shadow-neumorph hover:shadow-neumorph-hover transition p-6 flex flex-col justify-between transform hover:-translate-y-1.5">
-            <h2 class="text-xl font-semibold mb-3 truncate">
-              <%= transaction.title %>
-            </h2>
-            <p class="mb-3">
-              <strong>Amount:</strong> <%= number_to_currency(transaction.amount) %>
-            </p>
-            <p class="mb-3 text-gray-700">
-              <strong>Description:</strong> <%= transaction.description %>
-            </p>
-          </div>
-        <% end %>
+      <div class="overflow-x-auto shadow-md rounded-lg">
+        <table class="min-w-full bg-white">
+          <thead class="bg-blue-600 text-white uppercase text-sm leading-normal">
+            <tr>
+              <th class="py-3 px-6 text-left">Title</th>
+              <th class="py-3 px-6 text-left">Category</th>
+              <th class="py-3 px-6 text-left">Amount</th>
+              <th class="py-3 px-6 text-left">Kind</th>
+              <th class="py-3 px-6 text-left">Description</th>
+              <th class="py-3 px-6 text-left">Date</th>
+              <th class="py-3 px-6 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 text-sm font-light">
+            <% @transactions.each do |transaction| %>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left whitespace-nowrap">
+                  <div class="flex items-center">
+                    <span class="font-medium"><%= transaction.title %></span>
+                  </div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <span class="bg-gray-200 text-gray-600 py-1 px-3 rounded-full text-xs"><%= transaction.category.name %></span>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <span class="<%= transaction.kind == 'income' ? 'text-green-500' : 'text-red-500' %> py-1 px-3 rounded-full text-xs"><%= number_to_currency(transaction.amount) %></span>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <span class="<%= transaction.kind == 'income' ? 'bg-green-200 text-green-600' : 'bg-red-200 text-red-600' %> py-1 px-3 rounded-full text-xs"><%= transaction.kind.capitalize %></span>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <span><%= truncate(transaction.description, length: 30) %></span>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <span><%= transaction.date.strftime("%b %d, %Y") %></span>
+                </td>
+                <td class="py-3 px-6 text-center">
+                  <div class="flex item-center justify-center">
+                    <%= link_to 'Show', transaction, class: 'w-4 mr-2 transform hover:text-purple-500 hover:scale-110' %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     <% else %>
       <p class="text-gray-500 text-center mt-12 text-lg italic">No transactions yet. Create one above 👆</p>
     <% end %>
   </div>
 </div>
-
-<style>
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .animate-fadeIn {
-    animation: fadeIn 0.25s ease-out forwards;
-  }
-
-  /* Neumorphism shadows */
-  .shadow-neumorph {
-    box-shadow: 8px 8px 15px rgba(0,0,0,0.05), -8px -8px 15px rgba(255,255,255,0.8);
-  }
-  .shadow-neumorph-hover {
-    box-shadow: 4px 4px 20px rgba(0,0,0,0.1), -4px -4px 20px rgba(255,255,255,0.85);
-  }
-
-  /* Gradient text utility */
-  .text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-</style>

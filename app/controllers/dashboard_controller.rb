@@ -5,7 +5,5 @@ class DashboardController < ApplicationController
     @transactions = scope.includes(:category).order(date: :desc).limit(10)
 
     @balance = scope.sum(:amount)
-
-    
   end
 end
