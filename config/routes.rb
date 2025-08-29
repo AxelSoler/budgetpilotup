@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :transactions, only: [ :index, :new, :create, :show ]
   resources :categories, only: [ :index, :create, :update, :destroy ]
   resources :dashboard, only: [ :index ]
+  resources :stats, only: [ :index ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

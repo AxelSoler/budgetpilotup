@@ -31,7 +31,8 @@
     <% if (
       (controller_name == 'dashboard' && action_name == 'index') ||
       controller_name == 'categories' ||
-      controller_name == 'transactions'
+      controller_name == 'transactions' ||
+      controller_name == 'stats'
     ) %>
       <%= render 'shared/navbar' %>
     <% end %>

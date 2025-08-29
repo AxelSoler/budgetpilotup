@@ -1,0 +1,39 @@
+<div class="min-h-screen p-6 w-full">
+  <!-- Header -->
+  <header class="text-center mb-4 md:mb-8">
+    <h1 class="text-4xl font-extrabold drop-shadow-sm text-blue-600">
+      Stats
+    </h1>
+    <p class="mt-2 text-gray-700">Your financial charts</p>
+  </header>
+
+  <!-- Charts grid -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+    <div class="bg-white shadow-md rounded-2xl p-6 border" style="border-color: var(--color-primary-100);">
+      <h3 class="text-xl font-semibold mb-4 text-blue-600">Balance Over Time</h3>
+      <div class="chart-wrapper h-[300px]">
+        <%= line_chart @balance_over_time,
+          xtitle: "Date",
+          ytitle: "Amount",
+          height: "100%",
+          width: "100%",
+          library: { responsive: true, maintainAspectRatio: false } %>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-md rounded-2xl p-6 border" style="border-color: var(--color-primary-100);">
+      <h3 class="text-xl font-semibold mb-4 text-blue-600">Income vs Expenses</h3>
+      <div class="chart-wrapper h-[300px]">
+        <%= pie_chart @kind_split, height: "100%", width: "100%" %>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-md rounded-2xl p-6 border md:col-span-2 relative" style="border-color: var(--color-primary-100);">
+      <h3 class="text-xl font-semibold mb-4 text-blue-600">Expenses by Category</h3>
+      <div class="chart-wrapper h-[300px]">
+        <%= bar_chart @expenses_by_category, 
+              xtitle: "Category", ytitle: "Total Spent", height: "100%", width: "100%" %>
+      </div>
+    </div>
+  </div>
+</div>
