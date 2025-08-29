@@ -4,7 +4,7 @@
     <div class="flex items-center space-x-2">
       <%= link_to dashboard_path, class: "flex items-center" do %>
         <%= image_tag "/icon3.png", alt: "Budgetpilotup Logo", class: "w-10 h-10" %>
-        <span class="hidden md:block text-2xl font-extrabold" style="color: var(--color-primary-700);">BudgetPilotUp</span>
+        <span class="hidden sm:block text-2xl font-extrabold text-blue-600">BudgetPilotUp</span>
       <% end %>
     </div>
 
@@ -19,7 +19,7 @@
     </div>
 
     <div class="md:hidden">
-      <button id="mobile-menu-button" class="hover:text-blue-800 focus:outline-none" style="color: var(--color-primary-600);">
+      <button id="mobile-menu-button" class="hover:text-blue-800 focus:outline-none text-blue-600">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -29,7 +29,7 @@
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200" style="color: var(--color-primary-700);">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200">
     <div class="pt-2 pb-3 space-y-1">
       <%= link_to dashboard_path, class: "flex items-center px-4 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition-colors" do %>
         <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
