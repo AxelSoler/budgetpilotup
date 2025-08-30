@@ -4,6 +4,7 @@ class Transaction < ApplicationRecord
 
   enum :kind, { income: 0, expense: 1 }
 
+  validates :title, presence: true
   validates :amount, numericality: { greater_than: 0 }
   validates :kind, presence: true
 
