@@ -1,4 +1,4 @@
-<div class="min-h-screen w-full lg:w-4/5 mx-auto p-6 pt-16 md:pt-20">
+<div class="min-h-screen w-full lg:w-4/5 mx-auto p-6 pt-16 md:pt-20" data-controller="modal-row">
   <header class="flex flex-col sm:flex-row justify-between sm:justify-evenly items-center mb-8 border-b border-gray-300 pb-4">
     <h1 class="text-4xl font-extrabold text-gradient bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent drop-shadow-md">
       Transactions
@@ -13,9 +13,9 @@
         <strong class="font-semibold">Notice:</strong>
         <span class="block sm:inline"><%= notice %></span>
       </div>
-      <button 
-        type="button" 
-        onclick="document.getElementById('notice-alert').style.display='none'" 
+      <button
+        type="button"
+        onclick="document.getElementById('notice-alert').style.display='none'"
         class="font-bold ml-4 focus:outline-none focus:shadow-outline cursor-pointer">
         ✖
       </button>
@@ -37,12 +37,19 @@
               <th class="py-3 px-6 text-left">Kind</th>
               <th class="py-3 px-6 text-left">Description</th>
               <th class="py-3 px-6 text-left">Date</th>
-              <th class="py-3 px-6 text-center">Actions</th>
             </tr>
           </thead>
           <tbody class="text-gray-600 text-sm font-light">
             <% @transactions.each do |transaction| %>
-              <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <tr class="border-b border-gray-200 hover:bg-gray-100 cursor-pointer"
+                  data-action="click->modal-row#open"
+                  data-modal-row-title-param="<%= transaction.title %>"
+                  data-modal-row-category-param="<%= transaction.category.name %>"
+                  data-modal-row-amount-param="<%= number_to_currency(transaction.amount) %>"
+                  data-modal-row-kind-param="<%= transaction.kind.capitalize %>"
+                  data-modal-row-kind-class-param="<%= transaction.kind == 'income' ? 'bg-green-200 text-green-600' : 'bg-red-200 text-red-600' %>"
+                  data-modal-row-description-param="<%= transaction.description %>"
+                  data-modal-row-date-param="<%= transaction.date.strftime("%b %d, %Y") %>">
                 <td class="py-3 px-6 text-left whitespace-nowrap">
                   <div class="flex items-center">
                     <span class="font-medium"><%= transaction.title %></span>
@@ -63,11 +70,6 @@
                 <td class="py-3 px-6 text-left">
                   <span><%= transaction.date.strftime("%b %d, %Y") %></span>
                 </td>
-                <td class="py-3 px-6 text-center">
-                  <div class="flex item-center justify-center">
-                    <%= link_to 'Show', transaction, class: 'w-4 mr-2 transform hover:text-purple-500 hover:scale-110' %>
-                  </div>
-                </td>
               </tr>
             <% end %>
           </tbody>
@@ -76,5 +78,50 @@
     <% else %>
       <p class="text-gray-500 text-center mt-12 text-lg italic">No transactions yet.</p>
     <% end %>
+  </div>
+
+  <!-- Modal -->
+  <div data-modal-row-target="modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0" aria-hidden="true" data-action="click->modal-row#close" style="backdrop-filter: blur(3px);"></div>
+
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-4 border-blue-600 z-20 relative">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+              <h3 class="text-2xl font-extrabold text-gradient bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent" id="modal-title" data-modal-row-target="title"></h3>
+              <div class="mt-4">
+                <p class="text-sm text-gray-600" data-modal-row-target="description"></p>
+                <div class="mt-6 grid grid-cols-2 gap-6">
+                  <div>
+                    <p class="text-xs text-gray-500 uppercase">Amount</p>
+                    <p class="text-lg font-semibold" data-modal-row-target="amount"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500 uppercase">Category</p>
+                    <p class="text-lg font-semibold" data-modal-row-target="category"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500 uppercase">Date</p>
+                    <p class="text-lg font-semibold" data-modal-row-target="date"></p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500 uppercase">Kind</p>
+                    <p class="text-lg font-semibold"><span data-modal-row-target="kind"></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button type="button" data-action="click->modal-row#close" class="cursor-pointer w-full inline-flex justify-center rounded-3xl border border-transparent shadow-lg px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-500 text-base font-semibold text-white hover:from-blue-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm transition transform hover:scale-105">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
