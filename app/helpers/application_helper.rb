@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
   def nav_link_to(name, path)
     base_classes = "px-3 py-1.5 rounded-lg font-semibold transition"
     active_classes = "bg-blue-600 text-white"

@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   def index
-    @transactions = Transaction.all
+    @pagy, @transactions = pagy(Transaction.all, limit: 5)
   end
 
   def show

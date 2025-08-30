@@ -22,8 +22,11 @@
     </div>
   <% end %>
 
-  <div class="mx-auto">
+  <div class="mx-auto flex flex-col">
     <% if @transactions.any? %>
+      <div class="my-4 ml-auto">
+        <%== pagy_nav(@pagy) %>
+      </div>
       <div class="overflow-x-auto shadow-md rounded-lg">
         <table class="min-w-full bg-white">
           <thead class="bg-blue-600 text-white uppercase text-sm leading-normal">
@@ -71,7 +74,7 @@
         </table>
       </div>
     <% else %>
-      <p class="text-gray-500 text-center mt-12 text-lg italic">No transactions yet. Create one above 👆</p>
+      <p class="text-gray-500 text-center mt-12 text-lg italic">No transactions yet.</p>
     <% end %>
   </div>
 </div>
