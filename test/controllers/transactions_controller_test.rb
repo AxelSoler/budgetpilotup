@@ -19,7 +19,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create transaction" do
     assert_difference("Transaction.count") do
-      post transactions_url, params: { transaction: { amount: 10, category_id: categories(:one).id, kind: "expense" } }
+      post transactions_url, params: { transaction: { title: "test", amount: 10, category_id: categories(:one).id, kind: "expense" } }
     end
 
     assert_redirected_to transactions_url
