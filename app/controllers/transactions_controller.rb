@@ -1,10 +1,10 @@
 class TransactionsController < ApplicationController
   def index
-    @pagy, @transactions = pagy(Transaction.all, limit: 10)
+    @pagy, @transactions = pagy(Current.user.transactions, limit: 10)
   end
 
   def show
-    @transaction = Transaction.find(params[:id])
+    @transaction = Current.user.transactions.find(params[:id])
   end
 
   def new
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
       if uploaded_file.size > 10.megabytes
         @ai_suggestion = { error: "File is too large (limit 10MB)." }
       else
-        category_names = Category.pluck(:name).join(", ")
+        category_names = Current.user.categories.pluck(:name).join(", ")
         prompt = <<~PROMPT
           Analyze the following image or PDF of a receipt or invoice.
           Extract the following information:
