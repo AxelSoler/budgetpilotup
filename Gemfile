@@ -72,3 +72,4 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "rails_charts"
 
 gem "pagy"
+gem "httparty"

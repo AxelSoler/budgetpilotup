@@ -1,0 +1,25 @@
+<% if @ai_suggestion[:success] %>
+  <%= turbo_stream.replace "ai_suggestions" do %>
+    <div class="p-4 bg-green-100 rounded-lg text-green-800 mt-4">
+      ✅ Success!
+    </div>
+  <% end %>
+
+  <%= turbo_stream.append "form_autofill" do %>
+    <script>
+      document.querySelector("#transaction_title").value = "<%= j @ai_suggestion[:data]["title"] %>";
+      document.querySelector("#transaction_amount").value = "<%= @ai_suggestion[:data]["amount"] %>";
+      document.querySelector("#transaction_description").value = "<%= j @ai_suggestion[:data]["description"] %>";
+
+      const categorySelect = document.querySelector("#transaction_category_id");
+      const option = [...categorySelect.options].find(o => o.text === "<%= j @ai_suggestion[:data]["category"] %>");
+      if (option) categorySelect.value = option.value;
+    </script>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "ai_suggestions" do %>
+    <div class="p-4 bg-red-100 rounded-lg text-red-800 mt-4">
+      ❌ Error: <%= @ai_suggestion[:error] %>
+    </div>
+  <% end %>
+<% end %>

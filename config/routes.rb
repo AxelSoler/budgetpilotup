@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get "ai/show"
   resource :session
   resources :passwords, param: :token
   resources :users, only: [ :new, :create ]
-  resources :transactions, only: [ :index, :new, :create, :show ]
+  resources :transactions, only: [ :index, :new, :create, :show ] do
+    post :categorize_with_ai, on: :collection
+  end
   resources :categories, only: [ :index, :create, :update, :destroy ]
   resources :dashboard, only: [ :index ]
   resources :stats, only: [ :index ]
